@@ -3,4 +3,4 @@ Project to completion of programming discipline of enterprise systems in Java us
 
 First system module is in Desktop application.
 
-Second module is web application using JSP.
+Second module is web application using JSF.
