@@ -19,16 +19,17 @@ import javax.persistence.Table;
 @Table(name = "Escolaridade")
 public class Escolaridade {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "escolaridade_id")
     private int id;
 
+    @Column(name = "desc_escolaridade", length = 200, nullable = false)
     private String descEscolaridade;
 
     /**
      * @return the id
      */
-    @Id
-    @Column(name = "escolaridadeId")
-    @GeneratedValue
     public int getId() {
         return id;
     }

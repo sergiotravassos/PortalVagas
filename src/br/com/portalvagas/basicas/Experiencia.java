@@ -19,25 +19,35 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Experiencia")
 public class Experiencia {
-    	
-        private int id;
 
-	private Date dataInicio;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "experiencia_id")
+    private int id;
 
-	private Date dataTermino;
+    @Column(name = "data_inicio", length = 50, nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date dataInicio;
 
-	private Candidato idCandidato;
+    @Column(name = "data_termino", length = 50, nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date dataTermino;
 
-	private String nomeEmpresa;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "candidato_id",
+            insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
+    private Candidato idCandidato;
 
-	private String resumoExp;
+    @Column(name = "nome_empresa", length = 200, nullable = false)
+    private String nomeEmpresa;
+
+    @Column(name = "resumo_exp", length = 600, nullable = false)
+    private String resumoExp;
 
     /**
      * @return the id
      */
-    @Id
-    @Column(name = "experienciaId")
-    @GeneratedValue   
     public int getId() {
         return id;
     }

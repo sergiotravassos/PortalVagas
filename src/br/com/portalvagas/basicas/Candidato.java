@@ -21,38 +21,51 @@ import javax.persistence.Table;
 @Table(name = "Candidato")
 public class Candidato {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "candidato_id")
     private int id;
 
+    @Column(name = "nome", length = 50, nullable = false)
     private String nome;
 
+    @Column(name = "data_nascimento", length = 50, nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 
+    @Column(name = "endereco", length = 200, nullable = false)
     private String endereco;
 
+    @Column(name = "cidade", length = 100, nullable = false)
     private String cidade;
 
-    private char uf;
+    @Column(name = "uf", length = 100, nullable = false)
+    private String uf;
 
+    @Column(name = "cep", length = 100, nullable = false)
     private int cep;
 
+    @Column(name = "email", length = 200, nullable = false)
     private String email;
 
+    @Column(name = "telefone", length = 50, nullable = false)
     private int telefone;
 
+    @Column(name = "anexo", length = 100, nullable = false)
     private Blob anexo;
 
+    @Column(name = "nomeAnexo", length = 200, nullable = false)
     private String nomeAnexo;
 
+    @Column(name = "login", length = 200, nullable = false)
     private String login;
 
+    @Column(name = "senha", length = 200, nullable = false)
     private String senha;
 
     /**
      * @return the id
      */
-    @Id
-    @Column(name = "candidatoId")
-    @GeneratedValue
     public int getId() {
         return id;
     }

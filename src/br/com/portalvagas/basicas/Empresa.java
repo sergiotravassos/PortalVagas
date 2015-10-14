@@ -19,28 +19,35 @@ import javax.persistence.Table;
 @Table(name = "Empresa")
 public class Empresa {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "empresa_id")
     private int id;
 
+    @Column(name = "nome", length = 50, nullable = false)
     private String name;
 
+    @Column(name = "endereco", length = 200, nullable = false)
     private String endereco;
 
+    @Column(name = "pais", length = 100, nullable = false)
     private String pais;
 
+    @Column(name = "cidade", length = 100, nullable = false)
     private String cidade;
 
+    @Column(name = "uf", length = 100, nullable = false)
     private char uf;
 
+    @Column(name = "cep", length = 100, nullable = false)
     private String cep;
 
+    @Column(name = "url", length = 100, nullable = false)
     private String url;
 
     /**
      * @return the id
      */
-    @Id
-    @Column(name = "empresaId")
-    @GeneratedValue
     public int getId() {
         return id;
     }

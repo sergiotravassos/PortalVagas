@@ -20,32 +20,42 @@ import javax.persistence.Table;
 @Table(name = "Vaga")
 public class Vaga {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "vaga_id")
     private int id;
 
+    @Column(name = "data_vaga", length = 50, nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date dataDaVaga;
 
+    @Column(name = "status", length = 50, nullable = false)
     private int status;
 
+    @Column(name = "titulo_vaga", length = 50, nullable = false)
     private String tituloVaga;
 
+    @Column(name = "descricao", length = 200, nullable = false)
     private String descricao;
 
+    @Column(name = "duracao_contrato", length = 50, nullable = false)
     private String duracaoContrato;
 
+    @Column(name = "local_vaga", length = 260, nullable = false)
     private String localVaga;
 
+    @Column(name = "salario", nullable = false)
     private double salario;
 
+    @Column(name = "escolaridade_requerida", nullable = false)
     private String escolaridadeRequerida;
 
+    @Column(name = "categoria", length = 50, nullable = false)
     private String categoria;
 
     /**
      * @return the id
      */
-    @Id
-    @Column(name = "vagaId")
-    @GeneratedValue
     public int getId() {
         return id;
     }

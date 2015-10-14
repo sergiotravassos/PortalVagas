@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 /**
  *
  * @author sergiotravassos
@@ -22,10 +21,15 @@ import javax.persistence.Table;
 public class VagaCandidato {
 
     //corrigir este atributo e gerar get e set
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "candidato_id",
+            insertable = true, updatable = true)
     private Candidato idCandidato;
 
+    @Column(name = "data_candidatura", length = 50, nullable = false)
     private Date dataCandidatura;
 
+    @Column(name = "status_vaga", length = 100, nullable = false)
     private boolean statusVaga;
 
     /**
