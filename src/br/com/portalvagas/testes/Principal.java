@@ -7,13 +7,13 @@ package br.com.portalvagas.testes;
 
 import br.com.portalvagas.basicas.Candidato;
 import br.com.portalvagas.dados.SimpleEntityManager;
+import br.com.portalvagas.basicas.Vaga;
 import br.com.portalvagas.services.CandidatoServices;
-import br.com.portalvagas.services.EmpresaServices;
-import java.util.GregorianCalendar;
+import br.com.portalvagas.services.VagaServices;
 
 /**
  *
- * @author Caio Ernandes
+ * @author Sérgio Travassos
  */
 public class Principal {
 
@@ -27,25 +27,14 @@ public class Principal {
         
         Candidato c = new Candidato();
 
-        c.setNome("Caio");
-        c.setDataNascimento(new GregorianCalendar(1995,02,11));
-        c.getEndereco().setLogradouro("Rua de caio");
-        c.getEndereco().setBairro("ur-11");
-        c.getEndereco().setCep("5423456");
-        c.getEndereco().setCidade("jaboatão");
-        c.getEndereco().setEstado("PE");
-        c.getEndereco().setNumero(85);
-        c.getEndereco().setPais("Brasil");
-        c.setEmail("caio@gmail.com");
-        c.setAnexo(null);
-        c.setNomeAnexo("caio-curriculo.doc");
-        c.setLogin("caioernandes");
-        c.setSenha("senhadecaio");
+        //aqui seta os valores de candidato para salvar no bd
         
         candidatoService.save(c);
-
-        for(Candidato candidatoLista : candidatoService.findAll()) {
-            System.out.println(candidatoLista.getId() + " - " + candidatoLista.getNome());
+        
+        VagaServices vs = new VagaServices();
+        
+        for(Vaga vagas : vs.findAll()) {
+            System.out.println(vagas.getId() + " - " + vagas.getTituloVaga());
         }
         
         simpleEntityManager.close();
