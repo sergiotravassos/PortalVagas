@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -42,8 +44,7 @@ public class Experiencia {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "candidato_id",
             insertable = true, updatable = true)
-    @Fetch(FetchMode.JOIN)
-    private Candidato idCandidato;
+    private oldcandidato idCandidato;
 
     @Column(name = "nome_empresa", length = 200, nullable = false)
     private String nomeEmpresa;
@@ -96,14 +97,14 @@ public class Experiencia {
     /**
      * @return the idCandidato
      */
-    public Candidato getIdCandidato() {
+    public oldcandidato getIdCandidato() {
         return idCandidato;
     }
 
     /**
      * @param idCandidato the idCandidato to set
      */
-    public void setIdCandidato(Candidato idCandidato) {
+    public void setIdCandidato(oldcandidato idCandidato) {
         this.idCandidato = idCandidato;
     }
 

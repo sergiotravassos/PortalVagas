@@ -5,6 +5,7 @@
  */
 package br.com.portalvagas.basicas;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,13 +23,20 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name = "VagaCandidato")
-public class VagaCandidato {
-
+public class VagaCandidato implements Serializable{
+    
+    //corrigir este atributo e gerar get e set
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vaga_id",
+            insertable = true, updatable = true)
+    private Vaga idVaga;
+    
     //corrigir este atributo e gerar get e set
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "candidato_id",
             insertable = true, updatable = true)
-    private Candidato idCandidato;
+    private oldcandidato idCandidato;
 
     @Column(name = "data_candidatura", length = 50, nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)

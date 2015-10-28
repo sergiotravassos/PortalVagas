@@ -5,233 +5,274 @@
  */
 package br.com.portalvagas.basicas;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.util.Date;
-import java.sql.Blob;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
- * @author sergiotravassos
+ * @author felipePC
  */
 @Entity
-@Table(name = "Candidato")
-public class Candidato {
-
+@Table(name = "candidato", catalog = "portalvagas", schema = "")
+@NamedQueries({
+    @NamedQuery(name = "Candidato.findAll", query = "SELECT c FROM Candidato c"),
+    @NamedQuery(name = "Candidato.findByCandidatoId", query = "SELECT c FROM Candidato c WHERE c.candidatoId = :candidatoId"),
+    @NamedQuery(name = "Candidato.findByCep", query = "SELECT c FROM Candidato c WHERE c.cep = :cep"),
+    @NamedQuery(name = "Candidato.findByCidade", query = "SELECT c FROM Candidato c WHERE c.cidade = :cidade"),
+    @NamedQuery(name = "Candidato.findByDataNascimento", query = "SELECT c FROM Candidato c WHERE c.dataNascimento = :dataNascimento"),
+    @NamedQuery(name = "Candidato.findByEmail", query = "SELECT c FROM Candidato c WHERE c.email = :email"),
+    @NamedQuery(name = "Candidato.findByEndereco", query = "SELECT c FROM Candidato c WHERE c.endereco = :endereco"),
+    @NamedQuery(name = "Candidato.findByLogin", query = "SELECT c FROM Candidato c WHERE c.login = :login"),
+    @NamedQuery(name = "Candidato.findByNome", query = "SELECT c FROM Candidato c WHERE c.nome = :nome"),
+    @NamedQuery(name = "Candidato.findByNomeAnexo", query = "SELECT c FROM Candidato c WHERE c.nomeAnexo = :nomeAnexo"),
+    @NamedQuery(name = "Candidato.findBySenha", query = "SELECT c FROM Candidato c WHERE c.senha = :senha"),
+    @NamedQuery(name = "Candidato.findByTelefone", query = "SELECT c FROM Candidato c WHERE c.telefone = :telefone"),
+    @NamedQuery(name = "Candidato.findByUf", query = "SELECT c FROM Candidato c WHERE c.uf = :uf")})
+public class Candidato implements Serializable {
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "candidato_id")
-    private int id;
-
-    @Column(name = "nome", length = 50, nullable = false)
-    private String nome;
-
-    @Column(name = "data_nascimento", length = 50, nullable = false)
+    private Integer candidatoId;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "anexo")
+    private byte[] anexo;
+    @Basic(optional = false)
+    @Column(name = "cep")
+    private int cep;
+    @Basic(optional = false)
+    @Column(name = "cidade")
+    private String cidade;
+    @Basic(optional = false)
+    @Column(name = "data_nascimento")
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
-
-    @Column(name = "endereco", length = 200, nullable = false)
+    @Basic(optional = false)
+    @Column(name = "email")
+    private String email;
+    @Basic(optional = false)
+    @Column(name = "endereco")
     private String endereco;
-
-    @Column(name = "cidade", length = 100, nullable = false)
-    private String cidade;
-
-    @Column(name = "uf", length = 100, nullable = false)
+    @Basic(optional = false)
+    @Column(name = "login")
+    private String login;
+    @Basic(optional = false)
+    @Column(name = "nome")
+    private String nome;
+    @Basic(optional = false)
+    @Column(name = "nomeAnexo")
+    private String nomeAnexo;
+    @Basic(optional = false)
+    @Column(name = "senha")
+    private String senha;
+    @Basic(optional = false)
+    @Column(name = "telefone")
+    private int telefone;
+    @Basic(optional = false)
+    @Column(name = "uf")
     private String uf;
 
-    @Column(name = "cep", length = 100, nullable = false)
-    private int cep;
-
-    @Column(name = "email", length = 200, nullable = false)
-    private String email;
-
-    @Column(name = "telefone", length = 50, nullable = false)
-    private int telefone;
-
-    @Column(name = "anexo", length = 100, nullable = false)
-    private Blob anexo;
-
-    @Column(name = "nomeAnexo", length = 200, nullable = false)
-    private String nomeAnexo;
-
-    @Column(name = "login", length = 200, nullable = false)
-    private String login;
-
-    @Column(name = "senha", length = 200, nullable = false)
-    private String senha;
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
+    public Candidato() {
     }
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
+    public Candidato(Integer candidatoId) {
+        this.candidatoId = candidatoId;
     }
 
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
-    }
-
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    /**
-     * @return the dataNascimento
-     */
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    /**
-     * @param dataNascimento the dataNascimento to set
-     */
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    /**
-     * @return the endereco
-     */
-    public String getEndereco() {
-        return endereco;
-    }
-
-    /**
-     * @param endereco the endereco to set
-     */
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    /**
-     * @return the cidade
-     */
-    public String getCidade() {
-        return cidade;
-    }
-
-    /**
-     * @param cidade the cidade to set
-     */
-    public void setCidade(String cidade) {
+    public Candidato(Integer candidatoId, byte[] anexo, int cep, String cidade, Date dataNascimento, String email, String endereco, String login, String nome, String nomeAnexo, String senha, int telefone, String uf) {
+        this.candidatoId = candidatoId;
+        this.anexo = anexo;
+        this.cep = cep;
         this.cidade = cidade;
-    }
-
-    /**
-     * @return the uf
-     */
-    public char getUf() {
-        return uf;
-    }
-
-    /**
-     * @param uf the uf to set
-     */
-    public void setUf(char uf) {
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.endereco = endereco;
+        this.login = login;
+        this.nome = nome;
+        this.nomeAnexo = nomeAnexo;
+        this.senha = senha;
+        this.telefone = telefone;
         this.uf = uf;
     }
 
-    /**
-     * @return the cep
-     */
+    public Integer getCandidatoId() {
+        return candidatoId;
+    }
+
+    public void setCandidatoId(Integer candidatoId) {
+        this.candidatoId = candidatoId;
+    }
+
+    public byte[] getAnexo() {
+        return anexo;
+    }
+
+    public void setAnexo(byte[] anexo) {
+        byte[] oldAnexo = this.anexo;
+        this.anexo = anexo;
+        changeSupport.firePropertyChange("anexo", oldAnexo, anexo);
+    }
+
     public int getCep() {
         return cep;
     }
 
-    /**
-     * @param cep the cep to set
-     */
     public void setCep(int cep) {
+        int oldCep = this.cep;
         this.cep = cep;
+        changeSupport.firePropertyChange("cep", oldCep, cep);
     }
 
-    /**
-     * @return the email
-     */
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        String oldCidade = this.cidade;
+        this.cidade = cidade;
+        changeSupport.firePropertyChange("cidade", oldCidade, cidade);
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        Date oldDataNascimento = this.dataNascimento;
+        this.dataNascimento = dataNascimento;
+        changeSupport.firePropertyChange("dataNascimento", oldDataNascimento, dataNascimento);
+    }
+
     public String getEmail() {
         return email;
     }
 
-    /**
-     * @param email the email to set
-     */
     public void setEmail(String email) {
+        String oldEmail = this.email;
         this.email = email;
+        changeSupport.firePropertyChange("email", oldEmail, email);
     }
 
-    /**
-     * @return the telefone
-     */
-    public int getTelefone() {
-        return telefone;
+    public String getEndereco() {
+        return endereco;
     }
 
-    /**
-     * @param telefone the telefone to set
-     */
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
+    public void setEndereco(String endereco) {
+        String oldEndereco = this.endereco;
+        this.endereco = endereco;
+        changeSupport.firePropertyChange("endereco", oldEndereco, endereco);
     }
 
-    /**
-     * @return the nomeAnexo
-     */
-    public String getNomeAnexo() {
-        return nomeAnexo;
-    }
-
-    /**
-     * @param nomeAnexo the nomeAnexo to set
-     */
-    public void setNomeAnexo(String nomeAnexo) {
-        this.nomeAnexo = nomeAnexo;
-    }
-
-    /**
-     * @return the login
-     */
     public String getLogin() {
         return login;
     }
 
-    /**
-     * @param login the login to set
-     */
     public void setLogin(String login) {
+        String oldLogin = this.login;
         this.login = login;
+        changeSupport.firePropertyChange("login", oldLogin, login);
     }
 
-    /**
-     * @return the senha
-     */
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        String oldNome = this.nome;
+        this.nome = nome;
+        changeSupport.firePropertyChange("nome", oldNome, nome);
+    }
+
+    public String getNomeAnexo() {
+        return nomeAnexo;
+    }
+
+    public void setNomeAnexo(String nomeAnexo) {
+        String oldNomeAnexo = this.nomeAnexo;
+        this.nomeAnexo = nomeAnexo;
+        changeSupport.firePropertyChange("nomeAnexo", oldNomeAnexo, nomeAnexo);
+    }
+
     public String getSenha() {
         return senha;
     }
 
-    /**
-     * @param senha the senha to set
-     */
     public void setSenha(String senha) {
+        String oldSenha = this.senha;
         this.senha = senha;
+        changeSupport.firePropertyChange("senha", oldSenha, senha);
     }
 
+    public int getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(int telefone) {
+        int oldTelefone = this.telefone;
+        this.telefone = telefone;
+        changeSupport.firePropertyChange("telefone", oldTelefone, telefone);
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        String oldUf = this.uf;
+        this.uf = uf;
+        changeSupport.firePropertyChange("uf", oldUf, uf);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (candidatoId != null ? candidatoId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Candidato)) {
+            return false;
+        }
+        Candidato other = (Candidato) object;
+        if ((this.candidatoId == null && other.candidatoId != null) || (this.candidatoId != null && !this.candidatoId.equals(other.candidatoId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "br.com.portalvagas.gui.Candidato[ candidatoId=" + candidatoId + " ]";
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
+    }
+    
 }

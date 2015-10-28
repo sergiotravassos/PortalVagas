@@ -6,7 +6,7 @@
 package br.com.portalvagas.fachada;
 
 import br.com.portalvagas.basicas.Vaga;
-import Model.negocio.VagaNegocio;
+import br.com.portalvagas.negocio.VagaNegocio;
 
 /**
  *

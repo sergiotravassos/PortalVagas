@@ -5,7 +5,7 @@
  */
 package br.com.portalvagas.services;
 
-import br.com.portalvagas.basicas.Candidato;
+import br.com.portalvagas.basicas.oldcandidato;
 import br.com.portalvagas.dados.CandidatoDAO;
 import br.com.portalvagas.dados.SimpleEntityManager;
 import java.util.List;
@@ -28,10 +28,10 @@ public class CandidatoServices {
         dao = new CandidatoDAO(simpleEntityManager.getEntityManager());
     }
 
-    public void save(Candidato candidato) {
+    public void save(oldcandidato candidato) {
         try {
             simpleEntityManager.beginTransaction();
-            candidato.validate();
+            //candidato.validate();
             dao.save(candidato);
             simpleEntityManager.commit();
         } catch (Exception e) {
@@ -40,10 +40,10 @@ public class CandidatoServices {
         }
     }
 
-    public void delete(Candidato candidato) {
+    public void delete(oldcandidato candidato) {
         try {
             simpleEntityManager.beginTransaction();
-            candidato.validate();
+            //candidato.validate();
             dao.delete(candidato);
             simpleEntityManager.commit();
         } catch (Exception e) {
@@ -52,10 +52,10 @@ public class CandidatoServices {
         }
     }
     
-    public void update(Candidato candidato) {
+    public void update(oldcandidato candidato) {
         try {
             simpleEntityManager.beginTransaction();
-            candidato.validate();
+            //candidato.validate();
             dao.update(candidato);
             simpleEntityManager.commit();
         } catch (Exception e) {
@@ -64,7 +64,7 @@ public class CandidatoServices {
         }
     }
 
-    public List<Candidato> findAll() {
+    public List<oldcandidato> findAll() {
         return dao.findAll();
     }
 }

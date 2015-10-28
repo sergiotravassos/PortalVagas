@@ -28,7 +28,7 @@ public class EscolaridadeServices {
     public void save(Escolaridade escolaridade) {
         try {
             simpleEntityManager.beginTransaction();
-            escolaridade.validate();
+            //escolaridade.validate();
             dao.save(escolaridade);
             simpleEntityManager.commit();
         } catch (Exception e) {
@@ -40,7 +40,7 @@ public class EscolaridadeServices {
     public void delete(Escolaridade escolaridade) {
         try {
             simpleEntityManager.beginTransaction();
-            escolaridade.validate();
+            //escolaridade.validate();
             dao.delete(escolaridade);
             simpleEntityManager.commit();
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class EscolaridadeServices {
     public void update(Escolaridade escolaridade) {
         try {
             simpleEntityManager.beginTransaction();
-            escolaridade.validate();
+            //escolaridade.validate();
             dao.update(escolaridade);
             simpleEntityManager.commit();
         } catch (Exception e) {

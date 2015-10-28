@@ -28,7 +28,7 @@ public class VagaServices {
     public void save(Vaga vaga) {
         try {
             simpleEntityManager.beginTransaction();
-            vaga.validate();
+            //vaga.validate();
             dao.save(vaga);
             simpleEntityManager.commit();
         } catch (Exception e) {
@@ -40,7 +40,7 @@ public class VagaServices {
     public void delete(Vaga vaga) {
         try {
             simpleEntityManager.beginTransaction();
-            vaga.validate();
+            //vaga.validate();
             
             dao.delete(vaga);
             simpleEntityManager.commit();
@@ -53,7 +53,7 @@ public class VagaServices {
     public void update(Vaga vaga) {
         try {
             simpleEntityManager.beginTransaction();
-            vaga.validate();
+            //vaga.validate();
             dao.update(vaga);
             simpleEntityManager.commit();
         } catch (Exception e) {

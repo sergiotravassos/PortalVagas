@@ -5,14 +5,14 @@
  */
 package br.com.portalvagas.dados;
 
-import br.com.portalvagas.basicas.Candidato;
+import br.com.portalvagas.basicas.oldcandidato;
 import javax.persistence.EntityManager;
 
 /**
  *
  * @author Caio Ernandes
  */
-public class CandidatoDAO extends GenericDAO<Long, Candidato> {
+public class CandidatoDAO extends GenericDAO<Long, oldcandidato> {
 
     public CandidatoDAO(EntityManager entityManager) {
         super(entityManager);

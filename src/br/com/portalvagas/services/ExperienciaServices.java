@@ -30,7 +30,7 @@ public class ExperienciaServices {
     public void save(Experiencia experiencia) {
         try {
             simpleEntityManager.beginTransaction();
-            experiencia.validate();
+            //experiencia.validate();
             dao.save(experiencia);
             simpleEntityManager.commit();
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class ExperienciaServices {
     public void delete(Experiencia experiencia) {
         try {
             simpleEntityManager.beginTransaction();
-            experiencia.validate();
+            //experiencia.validate();
             dao.delete(experiencia);
             simpleEntityManager.commit();
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class ExperienciaServices {
     public void update(Experiencia experiencia) {
         try {
             simpleEntityManager.beginTransaction();
-            experiencia.validate();
+            //experiencia.validate();
             dao.update(experiencia);
             simpleEntityManager.commit();
         } catch (Exception e) {

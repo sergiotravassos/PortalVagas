@@ -5,7 +5,7 @@
  */
 package br.com.portalvagas.testes;
 
-import br.com.portalvagas.basicas.Candidato;
+import br.com.portalvagas.basicas.oldcandidato;
 import br.com.portalvagas.dados.SimpleEntityManager;
 import br.com.portalvagas.basicas.Vaga;
 import br.com.portalvagas.services.CandidatoServices;
@@ -25,7 +25,7 @@ public class Principal {
         CandidatoServices candidatoService = new CandidatoServices(simpleEntityManager);
         //EmpresaServices empresaServices = new EmpresaServices(simpleEntityManager);
         
-        Candidato c = new Candidato();
+        oldcandidato c = new oldcandidato();
 
         //aqui seta os valores de candidato para salvar no bd
         

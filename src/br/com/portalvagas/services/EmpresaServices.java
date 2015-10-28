@@ -30,7 +30,7 @@ public class EmpresaServices {
     public void save(Empresa empresa) {
         try {
             simpleEntityManager.beginTransaction();
-            empresa.validate();
+            //empresa.validate();
             dao.save(empresa);
             simpleEntityManager.commit();
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class EmpresaServices {
     public void delete(Empresa empresa) {
         try {
             simpleEntityManager.beginTransaction();
-            empresa.validate();
+            //empresa.validate();
             dao.delete(empresa);
             simpleEntityManager.commit();
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class EmpresaServices {
     public void update(Empresa empresa) {
         try {
             simpleEntityManager.beginTransaction();
-            empresa.validate();
+            //empresa.validate();
             dao.update(empresa);
             simpleEntityManager.commit();
         } catch (Exception e) {
